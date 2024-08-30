@@ -1,5 +1,6 @@
 import { CollectionConfig } from 'payload/types'
 import Roles from './Roles'
+import Avatar from './Avatar';
 
 const Users: CollectionConfig = {
   slug: 'users',
@@ -8,6 +9,10 @@ const Users: CollectionConfig = {
     useAsTitle: 'email',
   },
   fields: [
+    {
+      name: 'fullName',
+      type: 'text',
+    },
     {
       name: 'role',
       type: 'relationship',
@@ -19,7 +24,22 @@ const Users: CollectionConfig = {
       admin: {
         hidden: true,
       },
+    },
+    {
+      name: 'avatar',
+      type: 'upload',
+      relationTo: Avatar.slug,
+    },
+    {
+      name: 'phoneNumber',
+      type: 'text',
+    },
+    {
+      name: 'settings',
+      type: 'json',
+      defaultValue: {},
     }
+    
   ],
   hooks: {
     beforeChange: [
