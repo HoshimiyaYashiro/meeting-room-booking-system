@@ -9,6 +9,9 @@ import { buildConfig } from 'payload/config'
 import Users from './collections/Users'
 import Roles from './collections/Roles'
 import Avatar from './collections/Avatar'
+import Rooms from './collections/rooms'
+import Branches from './collections/Branches'
+import Meetings from './collections/meetings'
 
 export default buildConfig({
   admin: {
@@ -16,7 +19,7 @@ export default buildConfig({
     bundler: webpackBundler(),
   },
   editor: slateEditor({}),
-  collections: [Users, Roles, Avatar],
+  collections: [Users, Roles, Avatar, Rooms, Branches, Meetings],
   typescript: {
     outputFile: path.resolve(__dirname, 'payload-types.ts'),
   },

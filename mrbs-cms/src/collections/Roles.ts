@@ -1,3 +1,4 @@
+import { isAnyOne } from '../access/isAnyOne'
 import { CollectionConfig } from 'payload/types'
 
 const Roles: CollectionConfig = {
@@ -16,9 +17,12 @@ const Roles: CollectionConfig = {
     },
     {
       name: 'description',
-      type: 'text',
+      type: 'textarea',
     },
-  ]
+  ],
+  access: {
+    read: isAnyOne,
+  }
 }
 
 export default Roles

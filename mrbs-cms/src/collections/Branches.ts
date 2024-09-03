@@ -1,7 +1,7 @@
 import { CollectionConfig } from 'payload/types'
 
-const MeetingRooms: CollectionConfig = {
-  slug: 'meeting-rooms',
+const Branches: CollectionConfig = {
+  slug: 'branches',
   admin: {
     useAsTitle: 'name',
   },
@@ -12,9 +12,14 @@ const MeetingRooms: CollectionConfig = {
     },
     {
       name: 'description',
-      type: 'text',
+      type: 'textarea',
     },
+    {
+      name: 'address',
+      type: 'textarea',
+    },
+
   ]
 }
 
-export default MeetingRooms
+export default Branches
