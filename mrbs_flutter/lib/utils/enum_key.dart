@@ -1,0 +1,1 @@
+enum AuthManager { token, exp, user }
