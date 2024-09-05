@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mrbs_flutter/utils/responsive.dart';
 
 class LoginTop extends StatelessWidget {
   const LoginTop({  
@@ -13,7 +14,10 @@ class LoginTop extends StatelessWidget {
       children: [
         Align(
           alignment: Alignment.topCenter,
-          child: Image.asset("assets/icons/logo.png", width: 200),
+          child: Responsive(
+            mobile: Image.asset("assets/icons/logo.png", width: 300), 
+            desktop: Image.asset("assets/icons/logo.png", height: 150),
+          )
         ),
       ],
     );

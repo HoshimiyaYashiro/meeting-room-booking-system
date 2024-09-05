@@ -54,7 +54,7 @@ class _LoginFormState extends State<LoginForm> {
             validator: MultiValidator([
               RequiredValidator(errorText: "Email is required"),
               EmailValidator(errorText: "Enter a valid email"),
-            ]),
+            ]).call,
           ),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: defaultPadding),
@@ -74,7 +74,7 @@ class _LoginFormState extends State<LoginForm> {
                 RequiredValidator(errorText: "Password is required"),
                 MinLengthValidator(8,
                     errorText: "Password must be at least 8 characters long"),
-              ]),
+              ]).call,
             ),
           ),
           ForgotPasswordText(press: () {
@@ -95,7 +95,6 @@ class _LoginFormState extends State<LoginForm> {
                   email: _emailController.text,
                   password: _passwordController.text,
                 );
-                Get.toNamed("/home");
               }
             },
             child: Text(

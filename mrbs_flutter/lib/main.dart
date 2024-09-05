@@ -1,19 +1,21 @@
+import 'package:directus/directus.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:global_configuration/global_configuration.dart';
+import 'package:mrbs_flutter/controller/auth_controller.dart';
 
 import 'controller/screen_controller.dart';
 import 'middlewares/auth_middleware.dart';
 import 'screens/home/home_screen.dart';
 import 'screens/login/login_screen.dart';
-import 'state/auth_manager.dart';
 import 'utils/constants.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await GlobalConfiguration().loadFromAsset("app_settings.json");
   await GetStorage.init();
+  await DirectusCoreSingleton.init(GlobalConfiguration().getValue('CMS_API_URL'), storage: SharedPreferencesStorage());
   runApp(const MyApp());
 }
 
@@ -25,8 +27,7 @@ class MyApp extends StatelessWidget {
   
   @override
   Widget build(BuildContext context) {
-    final AuthManager authManager = Get.put(AuthManager());
-    authManager.checkLoginStatus();
+    Get.put(AuthController());
     return GetMaterialApp(
       getPages: [
         GetPage(name: '/login', page: () => const LoginScreen(), middlewares: [AuthMiddleware()]),

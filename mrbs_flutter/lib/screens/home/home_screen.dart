@@ -6,6 +6,19 @@ class HomeScreen extends GetView<HomeController> {
   const HomeScreen({super.key});
   @override
   Widget build(BuildContext context) {
+    return Container(
+      child: const Text('Home Screen'),
+    );
+  }
+}
+
+class MobileHomeScreen extends GetView<HomeController> {
+  const MobileHomeScreen({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: Obx(
         () => BottomNavigationBar(

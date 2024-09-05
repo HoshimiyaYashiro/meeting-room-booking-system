@@ -1,26 +1,39 @@
-import 'package:get/get_connect/connect.dart';
-import 'package:get/get_connect/http/src/status/http_status.dart';
+import 'package:directus/directus.dart';
+import 'package:get/get.dart';
 import 'package:global_configuration/global_configuration.dart';
-
-import '../models/auth_token.dart';
+import 'package:logger/logger.dart';
 
 class AuthService extends GetConnect {
   final String apiUrl = '${GlobalConfiguration().getValue('CMS_API_URL')}/api/users/';
+  final DirectusCore sdk = DirectusCoreSingleton.instance;
+  final logger = Logger();
 
-  Future<MeAuth?> fetchLogin(String email, String password) async {
-    final body = {"email": email, "password": password};
-    print(apiUrl);
-    final response = await post('$apiUrl/login', body);
-    if (response.statusCode == HttpStatus.ok) {
-      try {
-        print(response.body);
-        final MeAuth meAuth = MeAuth.fromJson(response.body);
-        return meAuth;
-      } catch (e) {
-        print(e);
-        return null;
-      }
-    } else {
+  get isLoggedIn {
+    return sdk.auth.isLoggedIn;
+  }
+
+  Future<void> login(String email, String password) async {
+    try {
+      await sdk.auth.login(email: email, password: password);
+    } catch (e) {
+      logger.e(e);
+    }
+  }
+
+  Future<void> logout() async {
+    try {
+      await sdk.auth.logout();
+    } catch (e) {
+      logger.e(e);
+    }
+  }
+
+  Future<DirectusUser?> getCurrentUser() async {
+    try {
+      final DirectusResponse<DirectusUser>? response =  await sdk.auth.currentUser?.read();
+      return response?.data;
+    } catch (e) {
+      logger.e(e);
       return null;
     }
   }

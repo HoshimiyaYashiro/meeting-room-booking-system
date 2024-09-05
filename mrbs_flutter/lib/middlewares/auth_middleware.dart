@@ -1,15 +1,12 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
-
-import '../state/auth_manager.dart';
+import 'package:mrbs_flutter/services/auth_service.dart';
 
 class AuthMiddleware extends GetMiddleware {
-  final AuthManager _authManager = Get.find();
-  
+  final AuthService _authService = Get.find();
   @override
   RouteSettings? redirect(String? route) {
-    print('>>> Route $route called');
-    if (_authManager.isLoggedIn.value) {
+    if (_authService.isLoggedIn) {
       return route == '/login' ? const RouteSettings(name: '/home') : null;
     } else {
       return route == '/login' ? null : const RouteSettings(name: '/login');
