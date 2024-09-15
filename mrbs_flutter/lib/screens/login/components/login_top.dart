@@ -15,8 +15,8 @@ class LoginTop extends StatelessWidget {
         Align(
           alignment: Alignment.topCenter,
           child: Responsive(
-            mobile: Image.asset("assets/icons/logo.png", width: 300), 
-            desktop: Image.asset("assets/icons/logo.png", height: 150),
+            mobile: Image.asset("assets/images/logo.png", width: 300), 
+            desktop: Image.asset("assets/images/logo.png", height: 150),
           )
         ),
       ],

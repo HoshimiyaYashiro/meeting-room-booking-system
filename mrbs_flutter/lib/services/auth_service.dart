@@ -1,10 +1,8 @@
 import 'package:directus/directus.dart';
 import 'package:get/get.dart';
-import 'package:global_configuration/global_configuration.dart';
 import 'package:logger/logger.dart';
 
 class AuthService extends GetConnect {
-  final String apiUrl = '${GlobalConfiguration().getValue('CMS_API_URL')}/api/users/';
   final DirectusCore sdk = DirectusCoreSingleton.instance;
   final logger = Logger();
 
@@ -25,16 +23,6 @@ class AuthService extends GetConnect {
       await sdk.auth.logout();
     } catch (e) {
       logger.e(e);
-    }
-  }
-
-  Future<DirectusUser?> getCurrentUser() async {
-    try {
-      final DirectusResponse<DirectusUser>? response =  await sdk.auth.currentUser?.read();
-      return response?.data;
-    } catch (e) {
-      logger.e(e);
-      return null;
     }
   }
 }
