@@ -26,10 +26,15 @@ class MyApp extends StatelessWidget {
           ),
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.height,
-          child: Stack(
-            fit: StackFit.expand,
+          child: Column(
             children: [
+              SizedBox(
+                width: double.infinity,
+                height: MediaQuery.of(context).size.height * 0.6,
+              ),
               Container(
+                alignment: Alignment.topLeft,
+                padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Column(
                   children: [
                     Text(
@@ -45,7 +50,7 @@ class MyApp extends StatelessWidget {
                     ),
                     Text(
                       'Acolyte of the Order',
-                      style: TextStyle(fontSize: 14, color: Colors.amberAccent[700]),
+                      style: TextStyle(fontSize: 16, color: Colors.amberAccent[700], fontWeight: FontWeight.bold),
                       textAlign: TextAlign.right,
                     ),
                   ],
